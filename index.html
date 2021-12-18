@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let userChoice;
+    let computerChoice;
+    let wins = 0;
+    let losses = 0;
+    let winMessage;
+    let lossMessage;
+    let invalidMessage = `I'm sorry but that's an invalid choice. Please choose either rock, paper, or scissors only.`;
+    let tieMessage = "Hey will you look at that. You both chose the same thing. It's a draw!";
+    
+    
+    const rpsChoices = ["rock", "paper", "scissors"];
+
+    function computerThrow(){
+      computerChoice = rpsChoices[Math.floor(Math.random() * 3)];
+      // console.log(`the computer has chosen ${computerChoice}, while you chose ${userChoice}`);
+      return computerChoice;
+    }
+    function roundResult(result){
+      let recordMessage;
+      if (result==='win'){
+        wins++
+        console.log(winMessage);
+      }
+      if (result === 'loss'){
+        losses++
+        console.log(lossMessage);
+      } 
+      if (result === 'tie'){
+        console.log(tieMessage);
+      }
+      recordMessage = `So far, you've won ${wins} ${wins === 1 ? 'match': 'matches' } and lost ${losses}.`;
+      console.log(recordMessage);
+    }
+    
+    
+    rspGame: do {
+      //get user's throw choice
+      userChoice = prompt("Hello. Would you like to play a game of 'Rock, Paper, Scissors'?\n\n Please choose your throw."); 
+      
+      //check if user hit cancel or a blank OK
+      if (userChoice != null || userChoice === ''){
+        userChoice = userChoice.toLowerCase();
+      } 
+
+      //check if it's a typo but also not a null or emptystring
+      if (userChoice != 'rock' && 
+      userChoice != 'paper' && 
+      userChoice != 'scissors' && userChoice != null && userChoice != ''){
+        alert(invalidMessage);
+        continue rspGame;
+      }
+
+      //CGP makes its throw
+      computerChoice = computerThrow();
+      
+      //generate messages with newly made player choices
+      winMessage = `Congrats! ${userChoice} beats ${computerChoice} so you've won!`;
+      lossMessage = `Oooof! The computer chose ${computerChoice}. ${computerChoice} beats ${userChoice} and you've lost.`;
+
+    //check who won
+      if (userChoice == 'paper'){
+        
+        if (computerChoice == 'paper'){
+          roundResult('tie');
+        } else if (computerChoice == 'rock'){
+          roundResult('win');
+        } else {
+          roundResult('loss');
+        }
+      } else if (userChoice == 'rock'){
+          if (computerChoice == 'rock'){
+          roundResult('tie');
+        } else if (computerChoice == 'scissors'){
+          roundResult('win');
+        } else {
+          roundResult('loss');
+        } 
+      } else if (userChoice == 'scissors'){        
+          if (computerChoice == 'scissors'){
+            roundResult('tie');
+          } else if (computerChoice == 'paper'){
+            roundResult('win');
+          } else {
+            roundResult('loss');
+          } 
+    } 
+  }while (userChoice);
+   
+  alert("Welp, it's been fun and I'm sorry to see you go but life is full of such sweet sorrows. Toodle-ooo!");
+  //   let ranNumber;
+    
+  //   for (let i = 0; i < 200; i++){
+  //   ranNumber = Math.floor(Math.random() * 3);
+  //   console.log(ranNumber);
+  
+  // }
+  </script>
+</body>
+</html>
