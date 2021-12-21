@@ -8,8 +8,8 @@
 </head>
 <body>
   <script>
-    let userChoice;
-    let computerChoice;
+    let playerSelection;
+    let computerSelection;
     let wins = 0;
     let losses = 0;
     let winMessage;
@@ -20,11 +20,17 @@
     
     const rpsChoices = ["rock", "paper", "scissors"];
 
-    function computerThrow(){
-      computerChoice = rpsChoices[Math.floor(Math.random() * 3)];
-      // console.log(`the computer has chosen ${computerChoice}, while you chose ${userChoice}`);
-      return computerChoice;
+    function computerPlay(){
+      let randomChoice = rpsChoices[Math.floor(Math.random() * 3)];
+      // console.log(`the computer has chosen ${computerChoice}, while you chose ${playerSelection}`);
+      return randomChoice;
     }
+
+    function userPlay(){
+      let userChoice = prompt("Hello. Would you like to play a game of 'Rock, Paper, Scissors'?\n\n Please choose your throw.");
+      return userChoice;
+    }
+
     function roundResult(result){
       let recordMessage;
       if (result==='win'){
@@ -42,60 +48,63 @@
       console.log(recordMessage);
     }
     
-    
-    rspGame: do {
-      //get user's throw choice
-      userChoice = prompt("Hello. Would you like to play a game of 'Rock, Paper, Scissors'?\n\n Please choose your throw."); 
-      
-      //check if user hit cancel or a blank OK
-      if (userChoice != null || userChoice === ''){
-        userChoice = userChoice.toLowerCase();
-      } 
-
-      //check if it's a typo but also not a null or emptystring
-      if (userChoice != 'rock' && 
-      userChoice != 'paper' && 
-      userChoice != 'scissors' && userChoice != null && userChoice != ''){
-        alert(invalidMessage);
-        continue rspGame;
-      }
-
-      //CGP makes its throw
-      computerChoice = computerThrow();
-      
-      //generate messages with newly made player choices
-      winMessage = `Congrats! ${userChoice} beats ${computerChoice} so you've won!`;
-      lossMessage = `Oooof! The computer chose ${computerChoice}. ${computerChoice} beats ${userChoice} and you've lost.`;
-
-    //check who won
-      if (userChoice == 'paper'){
+    function playRound(player, computer){
+      if (player == 'paper'){
         
-        if (computerChoice == 'paper'){
+        if (computer == 'paper'){
           roundResult('tie');
-        } else if (computerChoice == 'rock'){
+        } else if (computer == 'rock'){
           roundResult('win');
         } else {
           roundResult('loss');
         }
-      } else if (userChoice == 'rock'){
-          if (computerChoice == 'rock'){
+      } else if (player == 'rock'){
+          if (computer == 'rock'){
           roundResult('tie');
-        } else if (computerChoice == 'scissors'){
+        } else if (computer == 'scissors'){
           roundResult('win');
         } else {
           roundResult('loss');
         } 
-      } else if (userChoice == 'scissors'){        
-          if (computerChoice == 'scissors'){
+      } else if (player == 'scissors'){        
+          if (computer == 'scissors'){
             roundResult('tie');
-          } else if (computerChoice == 'paper'){
+          } else if (computer == 'paper'){
             roundResult('win');
           } else {
             roundResult('loss');
           } 
-    } 
-  }while (userChoice);
-   
+        } 
+    }
+    
+    rspGame: do {
+      //get user's throw choice
+       playerSelection = userPlay();
+      
+      //check if user hit cancel or a blank OK
+      if (playerSelection != null || playerSelection === ''){
+        playerSelection = playerSelection.toLowerCase();
+      } 
+
+      //check if it's a typo but also not a null or emptystring
+      if (playerSelection != 'rock' && 
+      playerSelection != 'paper' && 
+      playerSelection != 'scissors' && playerSelection != null && playerSelection != ''){
+        alert(invalidMessage);
+        continue
+      }
+
+      //CGP makes its throw
+      computerSelection = computerPlay();
+      
+      //generate messages with newly made player choices
+      winMessage = `Congrats! ${playerSelection} beats ${computerSelection} so you've won!`;
+      lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${playerSelection}... aaaand you've lost.`;
+
+    //check who won    
+    playRound(playerSelection, computerSelection);
+  }while(playerSelection)
+  
   alert("Welp, it's been fun and I'm sorry to see you go but life is full of such sweet sorrows. Toodle-ooo!");
   //   let ranNumber;
     
