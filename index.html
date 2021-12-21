@@ -8,6 +8,8 @@
 </head>
 <body>
   <script>
+    const rpsChoices = ["rock", "paper", "scissors"];
+
     let playerSelection;
     let computerSelection;
     let wins = 0;
@@ -15,14 +17,14 @@
     let winMessage;
     let lossMessage;
     let invalidMessage = `I'm sorry but that's an invalid choice. Please choose either rock, paper, or scissors only.`;
-    let tieMessage = "Hey will you look at that. You both chose the same thing. It's a draw!";
+    let tieMessage;
+    let endResult;
+    let quitMessage = `Well, it's been fun. I'm sorry to see you go but life is full of such sweet sorrows, aint it? Toodle-ooo!`
+       
     
-    
-    const rpsChoices = ["rock", "paper", "scissors"];
 
     function computerPlay(){
       let randomChoice = rpsChoices[Math.floor(Math.random() * 3)];
-      // console.log(`the computer has chosen ${computerChoice}, while you chose ${playerSelection}`);
       return randomChoice;
     }
 
@@ -30,82 +32,101 @@
       let userChoice = prompt("Hello. Would you like to play a game of 'Rock, Paper, Scissors'?\n\n Please choose your throw.");
       return userChoice;
     }
-
+    
+    function playerQuits(message){
+      alert(message);
+    } 
+    
     function roundResult(result){
+
       let recordMessage;
+      let message;
       if (result==='win'){
         wins++
-        console.log(winMessage);
+        message = winMessage;
       }
       if (result === 'loss'){
         losses++
-        console.log(lossMessage);
+        message = lossMessage;
       } 
       if (result === 'tie'){
-        console.log(tieMessage);
+        tieMessage = `Hey will you look at that. You both chose ${playerSelection}. It's a draw!`;
+        message = tieMessage;
+
       }
       recordMessage = `So far, you've won ${wins} ${wins === 1 ? 'match': 'matches' } and lost ${losses}.`;
-      console.log(recordMessage);
+        return `${message}.\n${recordMessage}`;
     }
     
     function playRound(player, computer){
+      //REDUCE CONDITIONAL FLOW BY LIKE A LOT BY FIRST SEEKING THE EVALUATION OF THE COMMON CONDITIONAL. IE. WHAT IF IT'S A TIE? 
+
       if (player == 'paper'){
         
         if (computer == 'paper'){
-          roundResult('tie');
+          return roundResult('tie');
         } else if (computer == 'rock'){
-          roundResult('win');
+            return roundResult('win');
         } else {
-          roundResult('loss');
+            return roundResult('loss');
         }
       } else if (player == 'rock'){
           if (computer == 'rock'){
-          roundResult('tie');
+            return roundResult('tie');
         } else if (computer == 'scissors'){
-          roundResult('win');
+            return roundResult('win');
         } else {
-          roundResult('loss');
+            return roundResult('loss');
         } 
       } else if (player == 'scissors'){        
           if (computer == 'scissors'){
-            roundResult('tie');
+            return roundResult('tie');
           } else if (computer == 'paper'){
-            roundResult('win');
+              return roundResult('win');
           } else {
-            roundResult('loss');
+              return roundResult('loss');
           } 
         } 
     }
     
-    rspGame: do {
-      //get user's throw choice
-       playerSelection = userPlay();
+    function game(){
+      let rounds = 0
+
+      rspGame: do {
+        //get user's throw choice
+        playerSelection = userPlay();
+        //CGP makes its throw
+        computerSelection = computerPlay();
+        
+        //check if user hit cancel or a blank OK
+        if (playerSelection != null || playerSelection === ''){
+          playerSelection = playerSelection.toLowerCase();
+        } else if (playerSelection != 'rock' &&  //check if it's a typo but also not a null or emptystring
+            playerSelection != 'paper' && 
+            playerSelection != 'scissors' && playerSelection != null && playerSelection != ''){
+            alert(invalidMessage);
+            continue
+        } else {
+            playerQuits(quitMessage)
+            break
+        }
+
       
-      //check if user hit cancel or a blank OK
-      if (playerSelection != null || playerSelection === ''){
-        playerSelection = playerSelection.toLowerCase();
-      } 
-
-      //check if it's a typo but also not a null or emptystring
-      if (playerSelection != 'rock' && 
-      playerSelection != 'paper' && 
-      playerSelection != 'scissors' && playerSelection != null && playerSelection != ''){
-        alert(invalidMessage);
-        continue
-      }
-
-      //CGP makes its throw
-      computerSelection = computerPlay();
       
       //generate messages with newly made player choices
       winMessage = `Congrats! ${playerSelection} beats ${computerSelection} so you've won!`;
       lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${playerSelection}... aaaand you've lost.`;
 
     //check who won    
-    playRound(playerSelection, computerSelection);
-  }while(playerSelection)
-  
-  alert("Welp, it's been fun and I'm sorry to see you go but life is full of such sweet sorrows. Toodle-ooo!");
+    
+    rounds++
+    console.log(playRound(playerSelection, computerSelection));
+    }while(rounds < 5)
+
+    }
+    
+    game();
+
   //   let ranNumber;
     
   //   for (let i = 0; i < 200; i++){
