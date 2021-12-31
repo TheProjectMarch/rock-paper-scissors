@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#main-player-interface {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 500px;
+}
+
+.user-throw {
+  /* flex-grow: 1; */
+  width: 100px;
+  height: 100px;
+}
