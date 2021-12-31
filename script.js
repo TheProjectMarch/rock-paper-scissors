@@ -1,6 +1,9 @@
 const rpsChoices = ["rock", "paper", "scissors"];
 const btns = document.querySelectorAll(".user-throw");
 const resultsPara = document.querySelector("#results_text");
+const winText = document.getElementById('win_tally_text');
+const lossText = document.getElementById('loss_tally_text');
+const tieText = document.getElementById('tie_tally_text');
 let playerSelection;
 let computerSelection;
 let wins = 0;
@@ -11,6 +14,7 @@ let lossMessage;
 let tieMessage;
 let displayMessage;
 let endResult;
+
 
 btns.forEach((btn) =>
   btn.addEventListener("click", (e) => {
@@ -30,7 +34,7 @@ function game(selection) {
   //check who won & generate message
   displayMessage = playRound(playerSelection, computerSelection);
   showRoundResult(displayMessage);
-  console.log(playRound(playerSelection, computerSelection));
+  console.log(wins, losses, ties);
 }
 
 //COMPUTER PICKS A CHOICE
@@ -91,5 +95,11 @@ function roundResult(result) {
 //GENERATE DOM DISPLAY OF ROUND RESULT
 function showRoundResult(printMessage) {
   resultsPara.textContent = printMessage;
+  updateTrackRecord();
 }
 
+function updateTrackRecord(){
+  winText.textContent = wins;
+  lossText.textContent = losses;
+  tieText.textContent = ties;
+}
