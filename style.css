@@ -7,7 +7,11 @@
 /* body {
   min-height: 100vh;
 } */
-
+p {
+  font-size: 1.3em;
+  width: 50%;
+  text-align: center;
+}
 #main_heading {
   display: flex;
   justify-content: center;
@@ -28,8 +32,10 @@
 
 #round_results {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 300px;
-  border: 1px solid brown;
+  /* border: 1px solid brown; */
 }
 .user-throw {
   /* flex-grow: 1; */
