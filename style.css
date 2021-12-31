@@ -4,16 +4,35 @@
   margin: 0;
 }
 
+/* body {
+  min-height: 100vh;
+} */
+
+#main-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+  text-align: center;
+}
 #main-player-interface {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 500px;
+  height: 300px;
 }
 
+#round-results {
+  display: flex;
+  height: 300px;
+  border: 1px solid brown;
+}
 .user-throw {
   /* flex-grow: 1; */
   width: 100px;
   height: 100px;
 }
+
