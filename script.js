@@ -1,6 +1,6 @@
 
     const rpsChoices = ["rock", "paper", "scissors"];
-    const btn = document.querySelector('button');
+    const btns = document.querySelectorAll('.user-throw');
     let playerSelection;
     let computerSelection;
     let wins = 0;
@@ -8,38 +8,21 @@
     let ties = 0;
     let winMessage;
     let lossMessage;
-    let invalidMessage = `I'm sorry but that's an invalid choice. Please choose either rock, paper, or scissors only.`;
     let tieMessage;
     let endResult;
-    let quitMessage = `Well, it's been fun. I'm sorry to see you go but life is full of such sweet sorrows, aint it? Toodle-ooo!`
+    let quitMessage = `Well, it's been fun. I'm sorry to see you go but life is full of such sweet sorrows, aint it? Toodle-ooo!`;
        
-    btn.addEventListener('click', game);
+    btns.forEach((btn) => btn.addEventListener('click', (e) => {
+      playerSelection = e.target.getAttribute('id');
+      game(playerSelection);
+    }));
+
     //COMPUTER PICKS A CHOICE
     function computerPlay(){
       let randomChoice = rpsChoices[Math.floor(Math.random() * 3)];
       return randomChoice;
     }
-    //GET USERS THROW
-    function userPlay(){
-
-      let userChoice = prompt("Hello. Would you like to play a game of 'Rock, Paper, Scissors'?\n\n Please choose your throw.");
-      
-      //check if user hit cancel or a blank OK
-      if (userChoice != null || userChoice === ''){
-          userChoice = userChoice.toLowerCase();
-          if (userChoice != 'rock' &&  //check if it's a typo but also not a null or emptystring
-            userChoice != 'paper' && 
-            userChoice != 'scissors' && userChoice != null && userChoice != ''){
-            alert(invalidMessage);
-            return false
-           } 
-      } else {
-            playerQuits(quitMessage)
-            return 'quits'
-        }
-
-      return userChoice;
-    }
+    
     //QUIT MESSAGE IF PLAYER CHOOSES TO EXIT/CANCEL
     function playerQuits(message){
       alert(message);
@@ -50,7 +33,7 @@
 
       let recordMessage;
       let message;
-      if (result==='win'){
+      if (result === 'win'){
         wins++
         message = winMessage;
       }
@@ -76,7 +59,7 @@
     //ROUND 'PLAY' AND RESULT GENERATION
     function playRound(player, computer){
       
-      if (player == computer){
+      if (player === computer){
         return roundResult('tie')
       }
 
@@ -111,18 +94,15 @@
     }
 
     //INITIALIZATION OF GAME
-    function game(){
+    function game(selection){
       
-      
-        playerSelection = userPlay();
-        if (playerSelection === false ) return alert(invalidMessage);
-        if (playerSelection === 'quits') return
+      if (selection === 'quits') return
           
         //CGP makes its throw
         computerSelection = computerPlay();
       //generate messages with newly made player choices
-      winMessage = `Congrats! ${playerSelection} beats ${computerSelection} so you've won!`;
-      lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${playerSelection}... aaaand you've lost.`;
+      winMessage = `Congrats! ${selection} beats ${computerSelection} so you've won!`;
+      lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${selection}... aaaand you've lost.`;
 
     //check who won 
     
