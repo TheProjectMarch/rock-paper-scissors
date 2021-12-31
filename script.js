@@ -1,6 +1,6 @@
 const rpsChoices = ["rock", "paper", "scissors"];
 const btns = document.querySelectorAll(".user-throw");
-const resultsPara = document.querySelector("#results_message");
+const resultsPara = document.querySelector("#results_text");
 let playerSelection;
 let computerSelection;
 let wins = 0;

@@ -13,38 +13,48 @@ p {
   width: 50%;
   text-align: center;
 }
-
-.flex-container-row-centered {
-  display: flex;
-  justify-content: center;
+#results_text {
+  flex-grow: 1;
 }
 
+.flex {
+  display: flex;
+}
+
+.user-throw {
+  width: 100px;
+  height: 100px;
+}
 #page_title {
   text-align: center;
 }
 #main_player_interface {
-  
+  justify-content: center;
   align-items: flex-end;
   gap: 50px;
   height: 200px;
 }
 
 #round_results {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   margin-top: 50px;
   /* height: 300px; */
   /* border: 1px solid brown; */
 }
 
-#score-tally {
-
+#score_tally {
+  color: blue;
+  gap: 12px;
+  margin-top: 50px;
+  
 }
-.user-throw {
-  /* flex-grow: 1; */
-  width: 100px;
-  height: 100px;
+
+
+.tally {
+  
+  width: 75px;
+  flex-direction: column;
+  align-items: center;
 }
 
