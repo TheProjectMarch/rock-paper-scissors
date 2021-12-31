@@ -8,24 +8,25 @@
   min-height: 100vh;
 } */
 
-#main-heading {
+#main_heading {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#title {
+#page_title {
   text-align: center;
 }
-#main-player-interface {
+#main_player_interface {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 50px;
   height: 300px;
 }
 
-#round-results {
+#round_results {
   display: flex;
   height: 300px;
   border: 1px solid brown;
