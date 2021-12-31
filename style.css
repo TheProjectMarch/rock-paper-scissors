@@ -13,19 +13,17 @@ p {
   width: 50%;
   text-align: center;
 }
-#main_heading {
+
+.flex-container-row-centered {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 #page_title {
   text-align: center;
 }
 #main_player_interface {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  
   align-items: flex-end;
   gap: 50px;
   height: 200px;
@@ -33,11 +31,16 @@ p {
 
 #round_results {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
   /* height: 300px; */
   /* border: 1px solid brown; */
+}
+
+#score-tally {
+
 }
 .user-throw {
   /* flex-grow: 1; */

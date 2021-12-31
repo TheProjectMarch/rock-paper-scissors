@@ -24,8 +24,8 @@ function game(selection) {
   //CGP makes its throw
   computerSelection = computerPlay();
   //generate messages with newly made player choices
-  winMessage = `Congrats! ${selection} beats ${computerSelection} so you've won!`;
-  lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${selection}. Soooo you've lost.`;
+  winMessage = `Congrats! ${selection} beats ${computerSelection}!`;
+  lossMessage = `Oooof! The computer chose ${computerSelection} and unfortunately ${computerSelection} beats ${selection}.`;
 
   //check who won & generate message
   displayMessage = playRound(playerSelection, computerSelection);
